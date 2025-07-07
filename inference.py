@@ -8,15 +8,15 @@ from monai.transforms import (
     Compose,
     Resize,
     ToTensor,
-    AddChannel,
     LoadImage,
-    AsChannelFirst,
+    EnsureChannelFirst,
     NormalizeIntensity,
     Orientation,
     Spacing,
     Activations,
     AsDiscrete
 )
+
 
 # Additional Scripts
 from train_unetr import UneTRSeg
@@ -54,17 +54,15 @@ class SegInference:
         transform = Compose(
             [
                 LoadImage(image_only=True),
-                ToTensor(),
-                AsChannelFirst(),
-                Orientation(axcodes="RAS", image_only=True),
+                EnsureChannelFirst(),
+                Orientation(axcodes="RAS"),
                 Spacing(
                     pixdim=(1.0, 1.0, 1.0),
-                    mode="bilinear",
-                    image_only=True
+                    mode="bilinear"
                 ),
                 Resize(spatial_size=cfg.unetr.img_dim, mode='nearest'),
                 NormalizeIntensity(nonzero=True, channel_wise=True),
-                AddChannel(),
+                ToTensor()
             ]
         )
 
