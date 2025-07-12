@@ -16,9 +16,9 @@ The unofficial implementation of [UNETR: Transformers for 3D Medical Image Segme
 # 1.Dependencies 从这里开始看
 ```bash
 conda create -n unetr310 python=3.10
-conda acrivate unetr310
+conda activate unetr310
 pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu126
-pip installl tqdm monai opencv_python einops easydict -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install tqdm monai opencv_python einops easydict -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install 'monai[all]' -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
